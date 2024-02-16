@@ -4,9 +4,9 @@ import vertexai
 from vertexai.preview.generative_models import GenerativeModel
 from vertexai.preview.generative_models import Part
 from pathlib import Path
-from google.oauth2 import service_account
+#from google.oauth2 import service_account
 
-class description:
+class Description:
     # cred_folder=Path('/Users/ronaldboodram/Downloads/vertex-code/')
     # credentials = cred_folder/'genai-414119-90a878f7872f.json'
     # Class level variables
@@ -34,6 +34,6 @@ class description:
     
     
     def getdescription(self):
-        model_response = description.gemini_pro_vision_model.generate_content([description.text_part, description.image_part])
+        model_response = Description.gemini_pro_vision_model.generate_content([Description.text_part, Description.image_part])
         return str(model_response.candidates[0].content.parts[0].text)
     
