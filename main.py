@@ -1,8 +1,14 @@
-class Main():
+from flask import Flask
+import helper_classes.description
+from helper_classes.description import description
 
-    def __init__(self):
-        print("here")
+app = Flask(__name__)
 
-    if __name__ == '__main__':
-       print("testing 0123")
+var = description()
+
+@app.route('/')
+def index():
+    return var.getdescription()
+
+app.run(host='0.0.0.0', port=8080)
 

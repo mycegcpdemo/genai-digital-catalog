@@ -1,6 +1,16 @@
 # README
 
 Backend and frontend will be flask applications.
+User>FE>calls>BE[gets description, updates DB, returns description]
+Option#1
+3 services:
+svc1: FE
+svc2: BE
+svc3: Iniatialzation service. This service is deployed first and creates the DB, gcs bucket, initializer vertex. stores these objects in a list and sv2 call svc3 for theses objects before making a call to the various services
+
+Option#2
+svc1: FE
+svc2: BE. Spins up first, creates resources then waits for calls.
 
 # Backend
 Description class(image, product_name):
