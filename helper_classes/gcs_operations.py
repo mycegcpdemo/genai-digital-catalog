@@ -29,6 +29,7 @@ class ImageOps:
             blob = bucket.blob(bucket_dir)
             blob.upload_from_filename(image)
             print(f'Image {image} uploaded to bucket {bucket_name} as {bucket_dir}')
+            return blob.public_url
         except Exception as e:
             print(f"An error occurred during upload: {e}")
 
@@ -39,8 +40,9 @@ class ImageOps:
             blob = bucket.blob(source_blob_name)
             image_data = blob.download_as_string()
             image = Image.open(io.BytesIO(image_data)) 
+            #PIL image object, since we will be displaying this on the website directly
+            return image
         except Exception as e:
             print(f"An error occurred during download: {e}")
 
-        #PIL image object, since we will be displaying this on the website directly
-        return image
+ 
