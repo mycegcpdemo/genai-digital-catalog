@@ -20,7 +20,7 @@ class ImageOps:
     name = project+location+var
 
     # Create a storage client
-    storage_client = storage.Client(project=project,bucket,image,bucket_path)
+    storage_client = storage.Client(project=self.project)
 
     # Stores an image in a gcs bucket
     def save_image(self, bucket_name, image, bucket_dir):

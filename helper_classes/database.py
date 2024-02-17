@@ -28,7 +28,7 @@ class Database:
     engine = create_engine(engine_url)
 
     # Test the connection to the DB
-    # When using the "with" block the connection is automatiically closed at the end of the block
+    # When using the "with" block the connection is automatically closed at the end of the block
     def get_engine(self):
         try:
             with self.engine.connect() as connection:
