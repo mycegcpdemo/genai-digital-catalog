@@ -18,7 +18,6 @@ model = initialization.get_model()
 
 
 
-
 @app.route('/')
 def index():
     return 'index page'
