@@ -16,7 +16,6 @@ def test(img, description):
     description = f"this is a {description} and it is mighty fine!"
     return img, description
 
-
 with gr.Blocks() as demo:
     # p_name = gr.Textbox(label="Product Name")
     image = gr.Image(type="filepath")
