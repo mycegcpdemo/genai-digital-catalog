@@ -6,6 +6,7 @@ import logging
 from PIL import Image
 import io
 
+
 # Class to perform operations on images
 class ImageOps:
     # Initialze random number generator
@@ -17,8 +18,8 @@ class ImageOps:
     var = str(random.random()).split("0.")[1]
     project = os.getenv("PROJECT")
     location = os.getenv("LOCATION")
-    name = project+location+var
-
+    name = project + location + var
+    # credentials = os.getenv("CREDENTIALS")
     # Create a storage client
     storage_client = storage.Client(project=project)
 
@@ -39,10 +40,24 @@ class ImageOps:
             bucket = self.storage_client.bucket(bucket_name)
             blob = bucket.blob(source_blob_name)
             image_data = blob.download_as_string()
-            image = Image.open(io.BytesIO(image_data)) 
-            #PIL image object, since we will be displaying this on the website directly
+            image = Image.open(io.BytesIO(image_data))
             return image
         except Exception as e:
             print(f"An error occurred during download: {e}")
 
- 
+    def get_image_public_uri(self, bucket_name, source_blob_name):
+        try:
+            bucket = self.storage_client.bucket(bucket_name)
+            blob = bucket.blob(source_blob_name)
+            public_uri = blob.public_url
+            # PIL image object, since we will be displaying this on the website directly
+            return public_uri
+        except Exception as e:
+            print(f"An error occurred during download: {e}")
+
+
+bucket='genai-414119us-central14523795535098186'
+
+gcs = ImageOps()
+link = gcs.get_image_public_uri(bucket,'test/receipt')
+print(link)

@@ -38,12 +38,25 @@ class DatabaseOperations:
             df.to_sql(table_name, engine, if_exists='replace', index=False)
         except Exception as e:
             logging.error(f"Recieved Error: {e}")
+    def print_table(self, table_name, engine):
+        df = pd.read_sql_query(f"SELECT * FROM {table_name}", con=engine)
+        return(df)
 
+    # Returns first product match in the database
+    def get_product_description(self, engine, p_name, table_name):
+        df = pd.read_sql_query(f"SELECT Cust_No, First_Name FROM Customers WHERE Last_Name='Smith'", con=engine)
+        return df
 
 # to test database Ops
 db = Database()
 engine = db.get_engine()
 db_ops = DatabaseOperations()
 table_names = db_ops.list_tables(engine)
-print(table_names)
-print(db_ops.get_table('products', engine))
+table_contents =db_ops.print_table('products', engine)
+
+dx=table_contents
+print(dx.values)
+rslt_df = dx[dx["product_name"].str.contains("receipt")]
+
+print(rslt_df)
+
