@@ -7,10 +7,10 @@ import logging
 import pandas as pd
 import os
 from dotenv import load_dotenv
-from database import Database
+from helper_classes.database import Database
+
 
 class DatabaseOperations:
-
     load_dotenv()
     db_user = os.getenv('DB_USER')
     db_password = os.getenv('DB_PASSWORD')
@@ -23,16 +23,16 @@ class DatabaseOperations:
             return df
         except Exception as e:
             logging.error(f"Recieved Error: {e}")
-    
+
     def list_tables(self, engine):
         try:
             metadata = MetaData()
             metadata.reflect(bind=engine)
-            table_names = metadata.tables.keys() 
+            table_names = metadata.tables.keys()
             return table_names
         except Exception as e:
             logging.error(f"Recieved Error: {e}")
-    
+
     def table_insert(self, table_name, engine, df):
         try:
             df.to_sql(table_name, engine, if_exists='replace', index=False)
@@ -40,8 +40,7 @@ class DatabaseOperations:
             logging.error(f"Recieved Error: {e}")
 
 
-
-#to test database Ops
+# to test database Ops
 db = Database()
 engine = db.get_engine()
 db_ops = DatabaseOperations()
