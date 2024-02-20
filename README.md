@@ -1,21 +1,4 @@
-# README
-
-Backend and frontend will be flask applications.
-User>FE>calls>BE[gets description, updates DB, returns description]
-
-Option#1
-1 svc with a gradio FE
-
-Option#2
-svc1: FE
-svc2: BE. Spins up first, creates resources then waits for calls.
-
-next steps:
-- get inventory dataset to use with app
-- create a gallery function that shows all images with their description in the table
-- 
-
-
+# README To be updated
 
 # Backend
 Description class(image, product_name):
