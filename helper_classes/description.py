@@ -12,7 +12,7 @@ class Description:
     
     def create_parts(self, gcs_url, product_name):
         image_part=Part.from_uri(gcs_url, mime_type="image/jpeg")
-        text_part_1 = Part.from_text(f"Describe this image of a {product_name}")
+        text_part_1 = Part.from_text(f"create a sales description of this {product_name} but limit it to 50 words or less")
         parts = [text_part_1, image_part]
         return parts
 

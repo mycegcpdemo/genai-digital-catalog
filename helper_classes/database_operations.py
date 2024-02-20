@@ -72,14 +72,14 @@ class DatabaseOperations:
             logging.error(f"Recieved Error: {e}")
 
 # to test database Ops
-db = Database()
-engine = db.get_engine()
-db_ops = DatabaseOperations()
+# db = Database()
+# engine = db.get_engine()
+# db_ops = DatabaseOperations()
 # result=db_ops.delete_table(engine)
 # print(result)
-table_names = db_ops.list_tables(engine)
-table_contents =db_ops.print_table('products', engine)
-dsp=db_ops.get_product_description(engine,'flower')
-print(table_contents.values)
-print(dsp)
+# table_names = db_ops.list_tables(engine)
+# table_contents =db_ops.print_table('products', engine)
+# dsp=db_ops.get_product_description(engine,'flower')
+# print(table_contents.values)
+# print(dsp)
 
