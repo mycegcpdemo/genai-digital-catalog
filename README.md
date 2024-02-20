@@ -10,12 +10,10 @@ Option#2
 svc1: FE
 svc2: BE. Spins up first, creates resources then waits for calls.
 
-problems:
-1. public url is only accessible by those with proper auth and not truly public because of org policy
-2. retrival of info from db table is a little bit difficult. work arounds: 
-- use pd to get the entire data and then create a loop where you create 
-one img with its description as its caption followed by another.
-- to get around the public url issue, use gcs to fetch the image back as a blob and pass it to the FE
+next steps:
+- get inventory dataset to use with app
+- create a gallery function that shows all images with their description in the table
+- 
 
 
 

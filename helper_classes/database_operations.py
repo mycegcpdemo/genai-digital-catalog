@@ -2,6 +2,7 @@ import sqlalchemy
 from sqlalchemy import create_engine
 from sqlalchemy.exc import OperationalError
 from sqlalchemy import MetaData
+from sqlalchemy.orm import sessionmaker
 from sqlalchemy import text
 import logging
 import pandas as pd
@@ -39,26 +40,46 @@ class DatabaseOperations:
         except Exception as e:
             logging.error(f"Recieved Error: {e}")
     def print_table(self, table_name, engine):
-        df = pd.read_sql_query(f"SELECT * FROM {table_name}", con=engine)
-        return(df)
+        try:
+            df = pd.read_sql_query(f"SELECT * FROM {table_name}", con=engine)
+            return(df)
+        except Exception as e:
+            logging.error(f"Recieved Error: {e}")
 
     # Returns first product match in the database
     def get_product_description(self, engine, p_name):
-        qry = "SELECT product_description,product_name FROM products WHERE product_name = receipt;"
-        qry2 = f'''SELECT product_description, gcs_url FROM "products" where "product_name" = '{p_name}'
-        '''
-        df = pd.read_sql_query(qry2, con=engine)
-        desp = [df.values[0][1], df.values[0][0]]
-        return desp
+        try:
+            qry = f'''SELECT product_description, gcs_url FROM "products" where "product_name" = '{p_name}'
+            '''
+            df = pd.read_sql_query(qry, con=engine)
+            print(df.values)
+            img_link_description = [df.values[0][1], df.values[0][0]]
+            return img_link_description
+        except Exception as e:
+            logging.error(f"Recieved Error: {e}")
+
+    # Need to use session manager to perform truncate.
+    def delete_table(self,engine):
+        try:
+            query = text('''TRUNCATE TABLE products''')
+            sess = sessionmaker(bind=engine)
+            session = sess()
+            session.execute(query)
+            session.commit()
+            session.close()
+            return "Table truncated(all values delete)"
+        except Exception as e:
+            logging.error(f"Recieved Error: {e}")
 
 # to test database Ops
-# db = Database()
-# engine = db.get_engine()
-# db_ops = DatabaseOperations()
-# table_names = db_ops.list_tables(engine)
-# table_contents =db_ops.print_table('products', engine)
-# dsp=db_ops.get_product_description(engine,'ronald')
-# print(dsp[0])
-# print(dsp[1])
-
+db = Database()
+engine = db.get_engine()
+db_ops = DatabaseOperations()
+# result=db_ops.delete_table(engine)
+# print(result)
+table_names = db_ops.list_tables(engine)
+table_contents =db_ops.print_table('products', engine)
+dsp=db_ops.get_product_description(engine,'flower')
+print(table_contents.values)
+print(dsp)
 

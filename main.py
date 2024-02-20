@@ -66,17 +66,3 @@ with gr.Blocks() as demo:
 
 demo.launch()
 
-# @app.route('/')
-# def index():
-#     return 'index page'
-#
-# @app.route('/submit')
-# def submit():
-#
-#     return "you are on the test page"
-#
-# @app.route('/about')
-# def about():
-#     return "you are on the about page"
-#
-# app.run(host='0.0.0.0', port=8080)
