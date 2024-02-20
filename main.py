@@ -18,6 +18,7 @@ initialization.create_table(database.get_engine())
 print("\ncreated initialization and database object and created table\n")
 
 create_bucket = initialization.create_bucket()
+# We know this bucket name will always be this becasue of the random.seed() method
 bucket_name = 'genai-414119us-central14523795535098186'
 model = initialization.get_model()
 print("\ncreate bucket and got back model object to make predictions with\n")
@@ -30,10 +31,11 @@ print("\nInitialize img_ops,database operations and description objects\n")
 
 def do_stuff(img, p_name):
     img_dir = "test/" + p_name
-    img_ops.save_image(bucket_name, img, img_dir)
+    public_url = img_ops.save_image(bucket_name, img, img_dir)
+    print("\n\n this is the public url: " + public_url + "\n\n")
     img_gcs_uri = "gs://" + bucket_name + "/" + img_dir
     des = description.getdescription(model, img_gcs_uri, p_name)
-    data = [[p_name, des, bucket_name + img_dir]]
+    data = [[p_name, des, public_url]]
     df = pd.DataFrame(data, columns=['product_name', 'product_description', 'gcs_url'])
     db_ops.table_insert('products', database.get_engine(), df)
     return des
@@ -42,23 +44,25 @@ def do_stuff(img, p_name):
 def get_gallery(p_name):
     # gets image public uri from gcs bucket
     link = img_ops.get_image(bucket_name, "test/" + p_name)
-    desp=db_ops.get_product_description(database.get_engine(),p_name)
+    desp = db_ops.get_product_description(database.get_engine(), p_name)
     print(desp)
-    return [(link, desp)]
+    return desp[1]
     # get product description from db
 
 
 with gr.Blocks() as demo:
     # p_name = gr.Textbox(label="Product Name")
-    image = gr.Image(type="filepath")
+    image = gr.Image(type="filepath",height=600,width=600)
     product_name = gr.Textbox(label="Product name")
     submit_btn = gr.Button("Submit")
-    submit_btn.click(fn=do_stuff, inputs=[image, product_name], api_name="setup")
-    gallery = gr.Gallery(
-        label="gallery", show_label=False, elem_id="gallery"
-        , columns=[3], rows=[1], object_fit="contain", height="auto")
-    btn = gr.Button("Generate images", scale=0)
-    submit_btn.click(fn=get_gallery, inputs=[product_name], outputs=[gallery], api_name="description")
+    description_box = gr.Textbox(label="Product Description")
+    submit_btn.click(fn=do_stuff, inputs=[image, product_name],outputs=[description_box], api_name="setup")
+
+    # gallery = gr.Gallery(
+    #     label="gallery", show_label=False, elem_id="gallery"
+    #     , columns=[3], rows=[1], object_fit="contain", height="auto")
+    # btn = gr.Button("Generate images", scale=0)
+    # submit_btn.click(fn=get_gallery, inputs=[product_name], outputs=[gallery], api_name="description")
 
 demo.launch()
 

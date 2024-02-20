@@ -2,15 +2,22 @@
 
 Backend and frontend will be flask applications.
 User>FE>calls>BE[gets description, updates DB, returns description]
+
 Option#1
-3 services:
-svc1: FE
-svc2: BE
-svc3: Iniatialzation service. This service is deployed first and creates the DB, gcs bucket, initializer vertex. stores these objects in a list and sv2 call svc3 for theses objects before making a call to the various services
+1 svc with a gradio FE
 
 Option#2
 svc1: FE
 svc2: BE. Spins up first, creates resources then waits for calls.
+
+problems:
+1. public url is only accessible by those with proper auth and not truly public because of org policy
+2. retrival of info from db table is a little bit difficult. work arounds: 
+- use pd to get the entire data and then create a loop where you create 
+one img with its description as its caption followed by another.
+- to get around the public url issue, use gcs to fetch the image back as a blob and pass it to the FE
+
+
 
 # Backend
 Description class(image, product_name):

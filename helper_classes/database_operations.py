@@ -43,20 +43,22 @@ class DatabaseOperations:
         return(df)
 
     # Returns first product match in the database
-    def get_product_description(self, engine, p_name, table_name):
-        df = pd.read_sql_query(f"SELECT Cust_No, First_Name FROM Customers WHERE Last_Name='Smith'", con=engine)
-        return df
+    def get_product_description(self, engine, p_name):
+        qry = "SELECT product_description,product_name FROM products WHERE product_name = receipt;"
+        qry2 = f'''SELECT product_description, gcs_url FROM "products" where "product_name" = '{p_name}'
+        '''
+        df = pd.read_sql_query(qry2, con=engine)
+        desp = [df.values[0][1], df.values[0][0]]
+        return desp
 
 # to test database Ops
-db = Database()
-engine = db.get_engine()
-db_ops = DatabaseOperations()
-table_names = db_ops.list_tables(engine)
-table_contents =db_ops.print_table('products', engine)
+# db = Database()
+# engine = db.get_engine()
+# db_ops = DatabaseOperations()
+# table_names = db_ops.list_tables(engine)
+# table_contents =db_ops.print_table('products', engine)
+# dsp=db_ops.get_product_description(engine,'ronald')
+# print(dsp[0])
+# print(dsp[1])
 
-dx=table_contents
-print(dx.values)
-rslt_df = dx[dx["product_name"].str.contains("receipt")]
-
-print(rslt_df)
 

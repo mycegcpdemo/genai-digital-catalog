@@ -56,8 +56,3 @@ class ImageOps:
             print(f"An error occurred during download: {e}")
 
 
-bucket='genai-414119us-central14523795535098186'
-
-gcs = ImageOps()
-link = gcs.get_image_public_uri(bucket,'test/receipt')
-print(link)

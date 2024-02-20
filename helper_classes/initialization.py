@@ -37,8 +37,12 @@ class Initialization:
         try:
             bucket = storage_client.create_bucket(bucket_name)
             # Sets bucket ACLs to allow anyone to grant anyone with the gcs link read access
-            bucket.acl.all().grant_read()
-            bucket.acl.save()
+            policy = bucket.get_iam_policy(requested_policy_version=3)
+            policy.bindings.append(
+                {"role": "roles/storage.objectViewer", "members": ["allUsers"]}
+            )
+
+            bucket.set_iam_policy(policy)
             return bucket.path
         except Exception as e:
             logging.error(f"Bucket creation failed: {e}")

@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fabe7b79-9400-4b15-9743-77e237dffc4f" name="Changes" comment="wired up all clases in main. currently getting a error with &quot;description CLass&quot;">
+    <list default="true" id="fabe7b79-9400-4b15-9743-77e237dffc4f" name="Changes" comment="app storing images in gcs and making entries into the database. UI also working.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/helper_classes/database_operations.py" beforeDir="false" afterPath="$PROJECT_DIR$/helper_classes/database_operations.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helper_classes/description.py" beforeDir="false" afterPath="$PROJECT_DIR$/helper_classes/description.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/helper_classes/gcs_operations.py" beforeDir="false" afterPath="$PROJECT_DIR$/helper_classes/gcs_operations.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/helper_classes/initialization.py" beforeDir="false" afterPath="$PROJECT_DIR$/helper_classes/initialization.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
@@ -76,7 +76,14 @@
       <option name="project" value="LOCAL" />
       <updated>1708318180387</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="app storing images in gcs and making entries into the database. UI also working.">
+      <created>1708379098861</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1708379098861</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -94,6 +101,7 @@
     <MESSAGE value="remove file" />
     <MESSAGE value="gradio interface can take many inputs and outputs. Gradio call has to have inputs and putputs in lists.  Inputs and ouputs must correspond to components" />
     <MESSAGE value="wired up all clases in main. currently getting a error with &quot;description CLass&quot;" />
-    <option name="LAST_COMMIT_MESSAGE" value="wired up all clases in main. currently getting a error with &quot;description CLass&quot;" />
+    <MESSAGE value="app storing images in gcs and making entries into the database. UI also working." />
+    <option name="LAST_COMMIT_MESSAGE" value="app storing images in gcs and making entries into the database. UI also working." />
   </component>
 </project>
