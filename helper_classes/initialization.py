@@ -19,13 +19,10 @@ class Initialization:
     var = str(random.random()).split("0.")[1]
     project = os.getenv("PROJECT")
     location = os.getenv("LOCATION")
-    # credentials = os.getenv("CREDENTIALS")
     name = project + location + var
 
     # Get model from vertexai
-
     def get_model(self):
-        # abstract away to an environment file
         vertexai.init(project=self.project, location=self.location)
         # Load model
         model = GenerativeModel("gemini-pro-vision")

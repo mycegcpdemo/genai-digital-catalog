@@ -7,12 +7,12 @@ import pandas as pd
 import os
 from dotenv import load_dotenv
 
-# Database class that creates and tests a connection to our database.  
+
+# Database class creates and tests a connection to our database.
 # This class has a method that returns the engine object that is backed by a connection pool to 
 # use by other functions for creating a table and making calls.
 
 class Database:
-
     # Database credentials
     load_dotenv()
     db_host = os.getenv('DB_HOST')
@@ -36,9 +36,5 @@ class Database:
                 print("\n\n\n Success!\n\n\n")
             return self.engine
         except OperationalError as e:
-                logging.error(f"Database connection failed: {e}")
-                print("Database connection failed")
-
-
-# db = Database()
-# db.get_engine()
+            logging.error(f"Database connection failed: {e}")
+            print("Database connection failed")

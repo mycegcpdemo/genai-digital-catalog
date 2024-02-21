@@ -1,29 +1,19 @@
-#This class will receive the image from the user req then ask gemini to identify the object
-
 import vertexai
 from vertexai.preview.generative_models import GenerativeModel
 from vertexai.preview.generative_models import Part
 from pathlib import Path
-#from google.oauth2 import service_account
 from helper_classes.initialization import Initialization
+
+
 class Description:
-    # Class level variables
-    # image_part=Part.from_uri("gs://cloud-samples-data/ai-platform/flowers/daisy/10559679065_50d2b16f6d.jpg", mime_type="image/jpeg")
-    
     def create_parts(self, gcs_url, product_name):
-        image_part=Part.from_uri(gcs_url, mime_type="image/jpeg")
-        text_part_1 = Part.from_text(f"create a sales description of this {product_name} but limit it to 50 words or less")
+        image_part = Part.from_uri(gcs_url, mime_type="image/jpeg")
+        text_part_1 = Part.from_text(
+            f"create a sales description of this {product_name} but limit it to 50 words or less")
         parts = [text_part_1, image_part]
         return parts
 
-    
     def getdescription(self, model, gcs_url, product_name):
-        parts = self.create_parts(gcs_url,product_name)
+        parts = self.create_parts(gcs_url, product_name)
         model_response = model.generate_content(parts)
         return str(model_response.candidates[0].content.parts[0].text)
-    
-# initz=Initialization()
-# des=Description()
-# gcs_uri='gs://genai-414119us-central14523795535098186/test/recipt'
-# ans=des.getdescription(initz.get_model(),gcs_uri,'receipt')
-# print(ans)

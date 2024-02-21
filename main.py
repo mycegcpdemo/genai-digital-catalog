@@ -38,8 +38,9 @@ def do_stuff(img, p_name):
     data = [[p_name, des, public_url]]
     df = pd.DataFrame(data, columns=['product_name', 'product_description', 'gcs_url'])
     db_ops.table_insert('products', database.get_engine(), df)
-    gallery=get_gallery()
+    gallery = get_gallery()
     return des, gallery
+
 
 def get_gallery():
     table_contents = db_ops.print_table('products', database.get_engine())
@@ -55,6 +56,7 @@ def get_gallery():
         p.append(new_tuple)
     return p
 
+
 with gr.Blocks() as demo:
     image = gr.Image(type="filepath", height=600, width=600)
     product_name = gr.Textbox(label="Product name")
@@ -62,20 +64,7 @@ with gr.Blocks() as demo:
     description_box = gr.Textbox(label="Product Description")
     gallery = gr.Gallery(
         label="Generated images", show_label=False, elem_id="gallery"
-    , columns=[3], rows=[1], object_fit="contain", height="auto")
+        , columns=[3], rows=[1], object_fit="contain", height="auto")
     submit_btn.click(fn=do_stuff, inputs=[image, product_name], outputs=[description_box, gallery], api_name="setup")
-
-
-# with gr.Blocks() as demo:
-#     image = gr.Image(type="filepath", height=600, width=600)
-#     product_name = gr.Textbox(label="Product name")
-#     submit_btn = gr.Button("Submit")
-#     description_box = gr.Textbox(label="Product Description")
-#     gallery = gr.Gallery(
-#         label="Generated images", show_label=False, elem_id="gallery"
-#     , columns=[3], rows=[1], object_fit="contain", height="auto")
-#     btn = gr.Button("Generate images", scale=0)
-#     submit_btn.click(fn=do_stuff, inputs=[image, product_name], outputs=[description_box], api_name="setup")
-
 
 demo.launch()

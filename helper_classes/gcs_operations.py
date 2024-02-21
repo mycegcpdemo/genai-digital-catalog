@@ -7,7 +7,6 @@ from PIL import Image
 import io
 
 
-# Class to perform operations on images
 class ImageOps:
     # Initialze random number generator
     random.seed(11)
@@ -50,9 +49,6 @@ class ImageOps:
             bucket = self.storage_client.bucket(bucket_name)
             blob = bucket.blob(source_blob_name)
             public_uri = blob.public_url
-            # PIL image object, since we will be displaying this on the website directly
             return public_uri
         except Exception as e:
             print(f"An error occurred during download: {e}")
-
-

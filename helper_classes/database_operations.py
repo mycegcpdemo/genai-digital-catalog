@@ -71,26 +71,3 @@ class DatabaseOperations:
             return "Table truncated(all values delete)"
         except Exception as e:
             logging.error(f"Recieved Error: {e}")
-
-
-# to test database Ops
-db = Database()
-engine = db.get_engine()
-db_ops = DatabaseOperations()
-# result=db_ops.delete_table(engine)
-# print(result)
-# table = db_ops.print_table('products', engine)
-table_contents = db_ops.print_table('products', engine)
-l = table_contents.values
-p=[]
-for x in l:
-    print(x)
-    item1 = x[1]
-    print(item1)
-    item2 = x[2]
-    print(item2)
-    new_tuple = (item2,item1)
-    p.append(new_tuple)
-print(p)
-# print(table_contents.values[0][2])
-# print(table)
