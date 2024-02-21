@@ -1,13 +1,11 @@
 import vertexai
 from vertexai.preview.generative_models import GenerativeModel
-from vertexai.preview.generative_models import Part
 from google.cloud import storage
 import random
 import os
 import logging
 from dotenv import load_dotenv
 from sqlalchemy import Column, Integer, String, MetaData, Table
-from sqlalchemy import create_engine
 
 
 class Initialization:

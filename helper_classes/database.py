@@ -1,11 +1,10 @@
-import sqlalchemy
-from sqlalchemy import create_engine
-from sqlalchemy.exc import OperationalError
-from sqlalchemy import text
+# import sqlalchemy
 import logging
-import pandas as pd
 import os
 from dotenv import load_dotenv
+from sqlalchemy import create_engine
+from sqlalchemy import text
+from sqlalchemy.exc import OperationalError
 
 
 # Database class creates and tests a connection to our database.

@@ -31,7 +31,22 @@ Main class()
 - Update product catalog view with new entries
 
 # Front End
-- Has input fields for product name, image upload on the left side of the screen
-- Has output field on the right to display product name, image with description at the bottom
-- Has a tab for users to see the entire catalog
-- Backend can tell frontend to update catalog async 
+- Uses Gradio.io to create the front end of this app
+- Takes two inputs: image of inventory product and product name
+- Returns two outputs: salesy description of the uploaded item and 
+a gallery of all items in the database with their descriptions as caption
+- Front End created using Gradio and Python
+
+# Back End
+- This is a cloud native app written in Python, makes use of Object-Oriented Programming to separate logical functions
+- GCS is used to store images uploaded by users
+- CloudSQL PostGress is the database where the 'Products' table is stored which contains: a primary key, product name, product description and public gcs inventory image links
+- Gemini model is used in multimodal mode with prompt engineering to return the desired formatted description output
+- App is designed to be deployed on CloudRun ideally or GKE
+
+# Operation
+- Once the app is started the Initialization Class is called and it will:
+  - Checks to see if a bucket (random_name) is present if not creates the bucket and returns gcs bucket link
+  - Checks if a DB name prod_db is already created if not creates DB and returns DB client object
+  - Initializes Vertex client and returns Gemini client object
+- returns a list of [gcs link, db client obj, vertex obj]

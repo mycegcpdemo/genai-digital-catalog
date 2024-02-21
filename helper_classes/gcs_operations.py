@@ -2,7 +2,6 @@ from google.cloud import storage
 import random
 import os
 from dotenv import load_dotenv
-import logging
 from PIL import Image
 import io
 

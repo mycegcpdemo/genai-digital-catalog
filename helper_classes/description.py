@@ -1,8 +1,4 @@
-import vertexai
-from vertexai.preview.generative_models import GenerativeModel
 from vertexai.preview.generative_models import Part
-from pathlib import Path
-from helper_classes.initialization import Initialization
 
 
 class Description:

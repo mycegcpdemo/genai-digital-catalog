@@ -1,8 +1,3 @@
-import logging
-
-from flask import Flask
-import helper_classes.description
-from helper_classes.description import Description
 from helper_classes.initialization import Initialization
 from helper_classes.database import Database
 import gradio as gr

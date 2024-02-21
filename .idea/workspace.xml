@@ -4,8 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fabe7b79-9400-4b15-9743-77e237dffc4f" name="Changes" comment="updated README.md">
+    <list default="true" id="fabe7b79-9400-4b15-9743-77e237dffc4f" name="Changes" comment="Clean up unused code and files">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/helper_classes/database.py" beforeDir="false" afterPath="$PROJECT_DIR$/helper_classes/database.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/helper_classes/database_operations.py" beforeDir="false" afterPath="$PROJECT_DIR$/helper_classes/database_operations.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/helper_classes/description.py" beforeDir="false" afterPath="$PROJECT_DIR$/helper_classes/description.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/helper_classes/gcs_operations.py" beforeDir="false" afterPath="$PROJECT_DIR$/helper_classes/gcs_operations.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/helper_classes/initialization.py" beforeDir="false" afterPath="$PROJECT_DIR$/helper_classes/initialization.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,7 +112,14 @@
       <option name="project" value="LOCAL" />
       <updated>1708460629240</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Clean up unused code and files">
+      <created>1708529492257</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1708529492257</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -129,6 +142,7 @@
     <MESSAGE value="added truncate table functionality" />
     <MESSAGE value="added try catch blocks for database calls. Changed the prompt engineering for the description." />
     <MESSAGE value="updated README.md" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated README.md" />
+    <MESSAGE value="Clean up unused code and files" />
+    <option name="LAST_COMMIT_MESSAGE" value="Clean up unused code and files" />
   </component>
 </project>
