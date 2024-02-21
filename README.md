@@ -1,52 +1,40 @@
 # README To be updated
 
-# Backend
-Description class(image, product_name):
-- Calls Gemini using a multimodal prompt passing in the image gcs link and product_name parameters and asks for a product_description
-- Parses response for product_description
-- Returns product_description
-
-Database class()
-- Accepts product name, gcs link, product description
-- Creates id(key)
-- Calls DB and writes an entry with the above parameters
-- Returns success or error code (try & catch exception)
-
-Image-Storage class(img)
-- Stores img in a gcs bucket
-- Returns gcs link for item
-
-initialization class()
-- Checks to see if a bucket (random_name) is present if not creates the bucket and returns gcs bucket link
-- Checks if a DB name prod_db is already created if not creates DB and returns DB client object
-- Initializes Vertex client and returns Gemini client object
-- returns a list of [gcs link, db client obj, vertex obj]
-
-Main class()
-- Calls initialization class to create DB, Bucket, Vertex client objects
-- Calls ImgStorage class to store the img from the http request
-- Calls Description class to get product description
-- Return product name, img, description to user
-- Calls DataBase class to store product name, img, description in Postgres DB
-- Update product catalog view with new entries
-
-# Front End
+## Front End
 - Uses Gradio.io to create the front end of this app
 - Takes two inputs: image of inventory product and product name
 - Returns two outputs: salesy description of the uploaded item and 
 a gallery of all items in the database with their descriptions as caption
 - Front End created using Gradio and Python
+- Converts an array of lists of lists to a list of tuples
 
-# Back End
-- This is a cloud native app written in Python, makes use of Object-Oriented Programming to separate logical functions
+## Back End
+- This is a cloud native app written in Python, makes use of Object-Oriented Programming to separate logical functions and allow for extensibility
 - GCS is used to store images uploaded by users
 - CloudSQL PostGress is the database where the 'Products' table is stored which contains: a primary key, product name, product description and public gcs inventory image links
 - Gemini model is used in multimodal mode with prompt engineering to return the desired formatted description output
 - App is designed to be deployed on CloudRun ideally or GKE
+- Calls to perform various operations such as database operations for example are wrapped in a "try except" block to catch any errors along with logging for visibility of the error.
 
-# Operation
-- Once the app is started the Initialization Class is called and it will:
-  - Checks to see if a bucket (random_name) is present if not creates the bucket and returns gcs bucket link
-  - Checks if a DB name prod_db is already created if not creates DB and returns DB client object
+## Operation
+- Once the app is started the main.py will call the Initialization Class is called and it will:
+  - Checks to see if a bucket (random_name) is present if not creates the bucket with the appropriate ACLs configured and returns gcs bucket link
+  - Checks if a database table is already created if not creates database table and returns database engine object.  Engine object contains a pool of connections that mathods use to connect to the database.
   - Initializes Vertex client and returns Gemini client object
-- returns a list of [gcs link, db client obj, vertex obj]
+- Database class: 
+  - Tests the connection to the database
+  - Returns the database engine object if it can connect to the database
+- DatabaseOperations class provide methods to:
+  - list the tables in a database
+  - Get the contents of a table
+  - Insert rows into a table
+  - Get only the description of a product
+  - Truncate the table (delete all items in the table)
+- Description class:
+  - Composes the multipart prompt for the multimodal GenAI Model
+  - Performs prompt engineering to get the model to provide the desired response 
+  - returns the GenAI response to the caller
+- Image_Ops class in gcs_operations.py provide methods to:
+  - Save an image
+  - Get an image public url
+  - Get an image 
