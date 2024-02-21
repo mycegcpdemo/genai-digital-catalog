@@ -36,13 +36,14 @@ class DatabaseOperations:
 
     def table_insert(self, table_name, engine, df):
         try:
-            df.to_sql(table_name, engine, if_exists='replace', index=False)
+            df.to_sql(table_name, engine, if_exists='append', index=False)
         except Exception as e:
             logging.error(f"Recieved Error: {e}")
+
     def print_table(self, table_name, engine):
         try:
             df = pd.read_sql_query(f"SELECT * FROM {table_name}", con=engine)
-            return(df)
+            return (df)
         except Exception as e:
             logging.error(f"Recieved Error: {e}")
 
@@ -59,7 +60,7 @@ class DatabaseOperations:
             logging.error(f"Recieved Error: {e}")
 
     # Need to use session manager to perform truncate.
-    def delete_table(self,engine):
+    def delete_table(self, engine):
         try:
             query = text('''TRUNCATE TABLE products''')
             sess = sessionmaker(bind=engine)
@@ -71,15 +72,25 @@ class DatabaseOperations:
         except Exception as e:
             logging.error(f"Recieved Error: {e}")
 
+
 # to test database Ops
-# db = Database()
-# engine = db.get_engine()
-# db_ops = DatabaseOperations()
+db = Database()
+engine = db.get_engine()
+db_ops = DatabaseOperations()
 # result=db_ops.delete_table(engine)
 # print(result)
-# table_names = db_ops.list_tables(engine)
-# table_contents =db_ops.print_table('products', engine)
-# dsp=db_ops.get_product_description(engine,'flower')
-# print(table_contents.values)
-# print(dsp)
-
+# table = db_ops.print_table('products', engine)
+table_contents = db_ops.print_table('products', engine)
+l = table_contents.values
+p=[]
+for x in l:
+    print(x)
+    item1 = x[1]
+    print(item1)
+    item2 = x[2]
+    print(item2)
+    new_tuple = (item2,item1)
+    p.append(new_tuple)
+print(p)
+# print(table_contents.values[0][2])
+# print(table)

@@ -38,31 +38,44 @@ def do_stuff(img, p_name):
     data = [[p_name, des, public_url]]
     df = pd.DataFrame(data, columns=['product_name', 'product_description', 'gcs_url'])
     db_ops.table_insert('products', database.get_engine(), df)
-    return des
+    gallery=get_gallery()
+    return des, gallery
 
-
-def get_gallery(p_name):
-    # gets image public uri from gcs bucket
-    link = img_ops.get_image(bucket_name, "test/" + p_name)
-    desp = db_ops.get_product_description(database.get_engine(), p_name)
-    print(desp)
-    return desp[1]
-    # get product description from db
-
+def get_gallery():
+    table_contents = db_ops.print_table('products', database.get_engine())
+    l = table_contents.values
+    p = []
+    for x in l:
+        print(x)
+        item1 = x[1]
+        print(item1)
+        item2 = x[2]
+        print(item2)
+        new_tuple = (item2, item1)
+        p.append(new_tuple)
+    return p
 
 with gr.Blocks() as demo:
-    # p_name = gr.Textbox(label="Product Name")
-    image = gr.Image(type="filepath",height=600,width=600)
+    image = gr.Image(type="filepath", height=600, width=600)
     product_name = gr.Textbox(label="Product name")
     submit_btn = gr.Button("Submit")
     description_box = gr.Textbox(label="Product Description")
-    submit_btn.click(fn=do_stuff, inputs=[image, product_name],outputs=[description_box], api_name="setup")
+    gallery = gr.Gallery(
+        label="Generated images", show_label=False, elem_id="gallery"
+    , columns=[3], rows=[1], object_fit="contain", height="auto")
+    submit_btn.click(fn=do_stuff, inputs=[image, product_name], outputs=[description_box, gallery], api_name="setup")
 
-    # gallery = gr.Gallery(
-    #     label="gallery", show_label=False, elem_id="gallery"
-    #     , columns=[3], rows=[1], object_fit="contain", height="auto")
-    # btn = gr.Button("Generate images", scale=0)
-    # submit_btn.click(fn=get_gallery, inputs=[product_name], outputs=[gallery], api_name="description")
+
+# with gr.Blocks() as demo:
+#     image = gr.Image(type="filepath", height=600, width=600)
+#     product_name = gr.Textbox(label="Product name")
+#     submit_btn = gr.Button("Submit")
+#     description_box = gr.Textbox(label="Product Description")
+#     gallery = gr.Gallery(
+#         label="Generated images", show_label=False, elem_id="gallery"
+#     , columns=[3], rows=[1], object_fit="contain", height="auto")
+#     btn = gr.Button("Generate images", scale=0)
+#     submit_btn.click(fn=do_stuff, inputs=[image, product_name], outputs=[description_box], api_name="setup")
+
 
 demo.launch()
-

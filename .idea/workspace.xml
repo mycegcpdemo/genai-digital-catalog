@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fabe7b79-9400-4b15-9743-77e237dffc4f" name="Changes" comment="added try catch blocks for database calls. Changed the prompt engineering for the description." />
+    <list default="true" id="fabe7b79-9400-4b15-9743-77e237dffc4f" name="Changes" comment="updated README.md">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/helper_classes/database_operations.py" beforeDir="false" afterPath="$PROJECT_DIR$/helper_classes/database_operations.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -97,7 +101,14 @@
       <option name="project" value="LOCAL" />
       <updated>1708458509944</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="updated README.md">
+      <created>1708460629240</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1708460629240</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -119,6 +130,7 @@
     <MESSAGE value="app working locally." />
     <MESSAGE value="added truncate table functionality" />
     <MESSAGE value="added try catch blocks for database calls. Changed the prompt engineering for the description." />
-    <option name="LAST_COMMIT_MESSAGE" value="added try catch blocks for database calls. Changed the prompt engineering for the description." />
+    <MESSAGE value="updated README.md" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated README.md" />
   </component>
 </project>
