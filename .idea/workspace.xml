@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fabe7b79-9400-4b15-9743-77e237dffc4f" name="Changes" comment="Clean up unused imports and editing README.md">
+    <list default="true" id="fabe7b79-9400-4b15-9743-77e237dffc4f" name="Changes" comment="edited README.md">
+      <change afterPath="$PROJECT_DIR$/FrontEnd.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
@@ -35,6 +36,11 @@
     &quot;settings.editor.selected.configurable&quot;: &quot;advanced.settings&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -121,7 +127,14 @@
       <option name="project" value="LOCAL" />
       <updated>1708531835288</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="edited README.md">
+      <created>1708540692391</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1708540692391</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -146,6 +159,7 @@
     <MESSAGE value="updated README.md" />
     <MESSAGE value="Clean up unused code and files" />
     <MESSAGE value="Clean up unused imports and editing README.md" />
-    <option name="LAST_COMMIT_MESSAGE" value="Clean up unused imports and editing README.md" />
+    <MESSAGE value="edited README.md" />
+    <option name="LAST_COMMIT_MESSAGE" value="edited README.md" />
   </component>
 </project>

@@ -1,9 +1,15 @@
 # README To be updated
 
+
+## TL;DR
+- Problem statement: With the rise of ecommerce the need to create 'salesy' descriptions to capture potential customers attention is crucial, multiply this by 1000's of sale items you can get the picture. Customers are asking for an inventory management solution where they can automate the above problem statement.  
+- Solution: This cloud native app is a GenAI inventory management solution that upon startup will provision the cloud resources it needs to function.  Then all the customer has to do is upload a picture of their product and its name.  The application uses GenAI to write an attention grabbing 'salesy' description of the product, return that to the user, next it saves a copy of this image in a bucket with read only ACL for the public and updates a CloudSQL postgresql database with the product name, description, and public GCS url to a database.
+![FrontEnd.png](FrontEnd.png)
+- 
 ## Front End
 - Uses Gradio.io to create the front end of this app
 - Takes two inputs: image of inventory product and product name
-- Returns two outputs: salesy description of the uploaded item and 
+- Returns two outputs: "salesy" description of the uploaded item and 
 a gallery of all items in the database with their descriptions as caption
 - Front End created using Gradio and Python
 - Converts an array of lists of lists to a list of tuples
